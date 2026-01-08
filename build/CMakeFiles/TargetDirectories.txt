@@ -1,3 +1,0 @@
-C:/Users/Maks/Documents/AGH Zaawansowane Projektowanie Obiektowe/NetSim/build/CMakeFiles/netsim.dir
-C:/Users/Maks/Documents/AGH Zaawansowane Projektowanie Obiektowe/NetSim/build/CMakeFiles/edit_cache.dir
-C:/Users/Maks/Documents/AGH Zaawansowane Projektowanie Obiektowe/NetSim/build/CMakeFiles/rebuild_cache.dir

@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Users/Maks/Documents/AGH Zaawansowane Projektowanie Obiektowe/NetSim/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/netsim.dir/includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\netsim.dir\\main.cpp.obj -c \"C:\\Users\\Maks\\Documents\\AGH Zaawansowane Projektowanie Obiektowe\\NetSim\\main.cpp\"",
-  "file": "C:/Users/Maks/Documents/AGH Zaawansowane Projektowanie Obiektowe/NetSim/main.cpp",
-  "output": "CMakeFiles/netsim.dir/main.cpp.obj"
-}
-]
