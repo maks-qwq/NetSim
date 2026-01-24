@@ -1,4 +1,4 @@
-#include "netsim.h"
+#include "netsim.hpp"
 #include <iostream>
 
 int main(){
