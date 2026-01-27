@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef IMPLEMENTATION_INFINITY_HPP
+#define IMPLEMENTATION_INFINITY_HPP
+
 
 #include <map>
 #include <memory>
@@ -43,3 +46,6 @@ private:
 
 void load_factory_structure(const std::string& filename, Factory& f);
 void save_factory_structure(const std::string& filename, const Factory& f);
+
+
+#endif 

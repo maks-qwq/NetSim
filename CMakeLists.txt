@@ -14,7 +14,7 @@ add_subdirectory(external/googletest)
 # Pliki źródłowe
 add_library(netsim_lib
     
-    src/packages.cpp
+    src/package.cpp
     src/nodes.cpp
     src/factory.cpp
     src/simulation.cpp
