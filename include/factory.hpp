@@ -1,6 +1,6 @@
 
-#ifndef IMPLEMENTATION_INFINITY_HPP
-#define IMPLEMENTATION_INFINITY_HPP
+#ifndef FACTORY_HPP
+#define FACTORY_HPP
 
 
 #include <map>
