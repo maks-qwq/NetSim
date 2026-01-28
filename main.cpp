@@ -3,10 +3,7 @@
 #include "package.hpp"
 
 int main(){
-
-    Package p1(100);
-
-    std::cout << p1.get_id();
+    std::cout << "wykonuję się";
 
     return 0;
 }
