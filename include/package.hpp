@@ -5,17 +5,17 @@
 
 class Package {
 public:
-    Package();
-    explicit Package(ElementID id): id_(id) { assigned_IDs.insert(id_); }
-    Package(Package&& package) noexcept: id_(package.id_) {}
-    Package& operator=(Package&&) noexcept;
+    Package(); //konstruktor domyślny
+    explicit Package(ElementID id): id_(id) { assigned_IDs.insert(id_); } //konstruktor z wybraniem id
+    Package(Package&& package) noexcept: id_(package.id_) {} //konstruktor kopiujący
+    Package& operator=(Package&&) noexcept; //konstruktor przenoszący
 
-    ElementID get_id() const {return id_; }
+    ElementID get_id() const {return id_; } //wyciągnięcie id
 
-    ~Package();
+    ~Package(); //destruktor z usunieciem id
 
 private:
     ElementID id_;
-    static std::set<ElementID> assigned_IDs;
-    static std::set<ElementID> freed_IDs;
+    static std::set<ElementID> assigned_IDs; //póla przypisanych id
+    static std::set<ElementID> freed_IDs; //zwolnione id
 };
