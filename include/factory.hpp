@@ -30,7 +30,7 @@ public:
 
     iterator find_by_id(ElementID id); //szuka elementu po id
     const_iterator find_by_id(ElementID id) const;
-    
+
 private:
     container_t nodes_;
 };
@@ -45,7 +45,7 @@ public:
     NodeCollection<Ramp>& ramps();
     NodeCollection<Worker>& workers();
     NodeCollection<Storehouse>& storehouses();
-
+    
     const NodeCollection<Ramp>& ramps() const;
     const NodeCollection<Worker>& workers() const;
     const NodeCollection<Storehouse>& storehouses() const;
@@ -54,7 +54,7 @@ private:
     NodeCollection<Ramp> ramps_;
     NodeCollection<Worker> workers_;
     NodeCollection<Storehouse> storehouses_;
-    void remove_receiver(collection: NodeCollection<Node>&, id: ElementID); //pomocnicza metoda do usuwania odbiorcy 
+    void remove_receiver(NodeCollection<Node>& collection, ElementID id); //pomocnicza metoda do usuwania odbiorcy 
 };
 
 void load_factory_structure(const std::string& filename, Factory& f);
