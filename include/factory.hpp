@@ -3,6 +3,8 @@
 #include <map>
 #include <memory>
 #include <algorithm>
+#include <istream>
+#include <optional>
 
 #include "nodes.hpp"
 #include "storage_types.hpp"
@@ -48,49 +50,47 @@ private:
 
 class Factory {
 public:
-    bool is_consistent(); //sprawdzanie spójności sieci
-    void do_deliveries(); //dokonywanie ewentualnych dostaw na rampy
-    void do_package_passing(); //dokonywanie ewentualnego przekazywania półproduktów
-    void do_work(); //dokonywanie ewentualnego przetwarzania półproduktów przez robotników
-
-    void add_ramp(Ramp&& r) { ramps_.add(std::move(r)); }
-    void remove_ramp(ElementID id) { ramps_.remove_by_id(id); }
-    NodeCollection<Ramp>::iterator find_ramp_by_id(ElementID id) { return ramps_.find_by_id(id); }
-    NodeCollection<Ramp>::const_iterator find_ramp_by_id(ElementID id) const { return ramps_.find_by_id(id); }
-    NodeCollection<Ramp>::const_iterator ramp_cbegin() const { return ramps_.cbegin(); }
-    NodeCollection<Ramp>::const_iterator ramp_cend() const { return ramps_.cend(); }
-
-    void add_ramp(Worker&& r) { workers_.add(std::move(r)); }
-    void remove_ramp(ElementID id) { workers_.remove_by_id(id); }
-    NodeCollection<Worker>::iterator find_worker_by_id(ElementID id) { return workers_.find_by_id(id); }
-    NodeCollection<Worker>::const_iterator find_worker_by_id(ElementID id) const { return workers_.find_by_id(id); }
-    NodeCollection<Worker>::const_iterator worker_cbegin() const { return workers_.cbegin(); }
-    NodeCollection<Worker>::const_iterator worker_cend() const { return workers_.cend(); }
-
-    void add_ramp(Storehouse&& r) { storehouses_.add(std::move(r)); }
-    void remove_ramp(ElementID id) { storehouses_.remove_by_id(id); }
-    NodeCollection<Storehouse>::iterator find_storehouse_by_id(ElementID id) { return storehouses_.find_by_id(id); }
-    NodeCollection<Storehouse>::const_iterator find_storehouse_by_id(ElementID id) const { return storehouses_.find_by_id(id); }
-    NodeCollection<Storehouse>::const_iterator storehouse_cbegin() const { return storehouses_.cbegin(); }
-    NodeCollection<Storehouse>::const_iterator storehouse_cend() const { return storehouses_.cend(); }
-
-
-
-    NodeCollection<Ramp>& ramps();
-    NodeCollection<Worker>& workers();
-    NodeCollection<Storehouse>& storehouses();
+    // === dodawanie elementów ===
+    void add_ramp(Ramp&& r);
+    void add_worker(Worker&& w);
+    void add_storehouse(Storehouse&& s);
     
-    const NodeCollection<Ramp>& ramps() const;
-    const NodeCollection<Worker>& workers() const;
-    const NodeCollection<Storehouse>& storehouses() const;
+    // === usuwanie elementów ===
+    void remove_worker(ElementID id);
+    
+    // === wyszukiwanie po ID ===
+    Ramp* find_ramp_by_id(ElementID id);
+    Worker* find_worker_by_id(ElementID id);
+    Storehouse* find_storehouse_by_id(ElementID id);
+
+    // === iteratory ===
+    using ramp_iterator = std::list<Ramp>::const_iterator;
+    using worker_iterator = std::list<Worker>::const_iterator;
+    using storehouse_iterator = std::list<Storehouse>::const_iterator;
+
+    ramp_iterator ramp_cbegin() const;
+    ramp_iterator ramp_cend() const;
+
+    worker_iterator worker_cbegin() const;
+    worker_iterator worker_cend() const;
+
+    storehouse_iterator storehouse_cbegin() const;
+    storehouse_iterator storehouse_cend() const;
+
+    // === spójność fabryki ===
+    bool is_consistent() const;
 
 private:
-    NodeCollection<Ramp> ramps_;
-    NodeCollection<Worker> workers_;
-    NodeCollection<Storehouse> storehouses_;
-    template<class Node>
-    void remove_receiver(NodeCollection<Node>& collection, ElementID id); //pomocnicza metoda do usuwania odbiorcy 
+    std::list<Ramp> ramps_;
+    std::list<Worker> workers_;
+    std::list<Storehouse> storehouses_;
+
+    bool has_reachable_storehouse(const PackageSender* sender,
+                                  std::list<const PackageSender*>& visited) const;
 };
+
+Factory load_factory_structure(std::istream& is);
+void save_factory_structure(const Factory& f, std::ostream& os);
 
 void load_factory_structure(const std::string& filename, Factory& f);
 void save_factory_structure(const std::string& filename, const Factory& f);

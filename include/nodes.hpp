@@ -102,6 +102,8 @@ public:
     void deliver_goods(Time t);
     ElementID get_id() const;
 
+    TimeOffset get_delivery_interval() const;
+
 private:
     ElementID id_;
     TimeOffset di_;
