@@ -128,6 +128,9 @@ public:
     const_iterator end() const override;
     const_iterator cend() const override;
 
+    TimeOffset get_processing_duration() const;
+    IPackageQueue* get_queue() const;
+
 private:
     ElementID id_;
     TimeOffset pd_;

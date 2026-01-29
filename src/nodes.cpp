@@ -158,3 +158,14 @@ IPackageReceiver::const_iterator Worker::cend() const {
     return queue_->cend();
 }
 
+TimeOffset Ramp::get_delivery_interval() const {
+    return di_;
+}
+
+TimeOffset Worker::get_processing_duration() const {
+    return pd_;
+}
+
+IPackageQueue* Worker::get_queue() const {
+    return queue_.get();
+}
